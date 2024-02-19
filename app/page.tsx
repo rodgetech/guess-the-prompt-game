@@ -41,24 +41,25 @@ export default function Home() {
     setGenerating(false);
   };
 
+  const fetchData = async () => {
+    try {
+      const response = await fetch("https://dkta9n.buildship.run/random");
+      const data = await response.json();
+      console.log(data);
+      setOriginalGuess(data);
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    }
+  };
+
   const reset = () => {
     setUserPrompt("");
     setOriginalGuess(undefined);
     setGuessScore(undefined);
+    fetchData();
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("https://dkta9n.buildship.run/random");
-        const data = await response.json();
-        console.log(data);
-        setOriginalGuess(data);
-      } catch (error) {
-        console.error("Failed to fetch data:", error);
-      }
-    };
-
     fetchData();
   }, []);
 
