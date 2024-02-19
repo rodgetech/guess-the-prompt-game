@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { OrginalGuess } from "@/app/page";
 import { useState } from "react";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 type Props = {
   onSubmit: (text: string) => void;
@@ -29,16 +30,27 @@ export function EnterGuess({ onSubmit, originalGuess }: Props) {
           <h1 className="text-3xl font-bold">Guess the prompt</h1>
         </div>
         <div className="grid grid-cols-2 gap-8 w-full">
-          <img
-            className="h-[400px] w-[600px] object-cover"
-            height="400"
-            src={originalGuess?.imageUrl || "/placeholder.svg"}
-            style={{
-              aspectRatio: "600/400",
-              objectFit: "cover",
-            }}
-            width="600"
-          />
+          <div className="relative">
+            {!originalGuess?.imageUrl && (
+              <ReloadIcon
+                className="absolute z-10 h-8 w-8 animate-spin text-slate-800"
+                style={{
+                  top: "50%",
+                  left: "50%",
+                }}
+              />
+            )}
+            <img
+              className="h-[400px] w-[600px] object-cover"
+              height="400"
+              src={originalGuess?.imageUrl || "/placeholder.svg"}
+              style={{
+                aspectRatio: "600/400",
+                objectFit: "cover",
+              }}
+              width="600"
+            />
+          </div>
           <div className="flex flex-col items-start space-y-4">
             <p className="text-sm">
               Can you guess the prompt used to generate this image?
