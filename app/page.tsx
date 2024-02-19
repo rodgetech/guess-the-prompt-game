@@ -2,6 +2,7 @@
 
 import { EnterGuess } from "@/components/enter-guess";
 import { GeneratingScore } from "@/components/generating-score";
+import { YourScore } from "@/components/your-score";
 import { useEffect, useState } from "react";
 
 export type OrginalGuess = {
@@ -63,6 +64,16 @@ export default function Home() {
 
   if (generating)
     return <GeneratingScore originalImage={originalGuess!.imageUrl} />;
+
+  if (guessScore)
+    return (
+      <YourScore
+        score={guessScore!}
+        originalGuess={originalGuess!}
+        userPrompt={userPrompt}
+        reset={reset}
+      />
+    );
 
   return <EnterGuess onSubmit={handleSubmit} originalGuess={originalGuess} />;
 }
