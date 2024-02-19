@@ -13,7 +13,7 @@ export function GeneratingScore({ originalImage }: Props) {
   return (
     <div className="max-w-4xl mx-auto my-8">
       <div className="text-center mb-8">
-        <h1 className="text-2xl font-bold">Generating Score</h1>
+        <h1 className="text-3xl font-bold">Generating Score</h1>
         <p className="text-lg text-gray-500">
           Please be patient while we&apos;re generating your score
         </p>
