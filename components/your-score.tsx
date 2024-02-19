@@ -19,16 +19,14 @@ export function YourScore({ score, originalGuess, userPrompt, reset }: Props) {
 
   useEffect(() => {
     const newSimilarityScore = parseFloat((score.score * 100).toFixed(2));
-    console.log(newSimilarityScore);
     setSimilarityScore(newSimilarityScore);
 
     const newScoreColorClass =
       newSimilarityScore < 40
-        ? "red-500"
+        ? "#ef4444"
         : newSimilarityScore < 70
-        ? "yellow-500"
-        : "green-500";
-    console.log(newScoreColorClass);
+        ? "#eab308"
+        : "#22c55e";
     setScoreColorClass(newScoreColorClass);
   }, [score]);
 
@@ -71,14 +69,18 @@ export function YourScore({ score, originalGuess, userPrompt, reset }: Props) {
       <div className="flex flex-col items-center">
         <div className="bg-gray-200 w-64 h-6 rounded-full mb-4">
           <div
-            className={`bg-${scoreColorClass} h-6 rounded-full`}
+            className={`h-6 rounded-full`}
             style={{
               width: `${similarityScore}%`,
+              backgroundColor: scoreColorClass,
             }}
           />
         </div>
         <p className="font-bold text-lg mb-4 text-red">Similarity score</p>
-        <p className={`text-2xl font-bold text-${scoreColorClass} mb-6`}>
+        <p
+          className={`text-2xl font-bold mb-6`}
+          style={{ color: scoreColorClass }}
+        >
           {similarityScore}%
         </p>
         <div className="flex gap-4">
