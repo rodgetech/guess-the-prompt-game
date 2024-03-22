@@ -64,7 +64,11 @@ export function EnterGuess({ onSubmit, originalGuess }: Props) {
             {originalGuess?.hints && (
               <p className="text-sm">Hints: {originalGuess?.hints.join()}</p>
             )}
-            <Button className="mt-2 w-full" onClick={handleSubmit}>
+            <Button
+              className="mt-2 w-full"
+              onClick={handleSubmit}
+              disabled={!originalGuess}
+            >
               Submit
             </Button>
           </div>
